@@ -5,7 +5,7 @@ class Media {
 
     public static function render_scripts(Array $javascripts ){
     
-        if (count($javascripts)) ==0)
+        if (count($javascripts) ==0)
             return FALSE;
     
     
@@ -30,7 +30,7 @@ class Media {
 
     public static function render_styles( Array $styles){
                
-           if (count($styles))==0)
+           if (count($styles)==0)
                return FALSE;    
                
            if (!IN_PRODUCTION){
