@@ -30,7 +30,7 @@ class Controller_Template extends Kohana_Controller_Template {
 	}
     
 	public function add_style( $styles){
-		self::add_to_aray($this->template->header->styles, $styles);
+		self::add_to_array($this->template->header->styles, $styles);
 	}
                                                                                                                                                   
 }
