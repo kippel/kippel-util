@@ -13,7 +13,7 @@ class Media {
     
             foreach ($javascripts as $js){
               
-                echo HTML::script("media/js/".$js);
+                echo HTML::script("media/scripts/".$js);
               
             }
             
@@ -21,7 +21,7 @@ class Media {
                                               
             $js = implode(",",$javascripts);
            
-            ?><script type="text/javascript" src="<?=url::base();?>min/index.php?b=media/js&amp;f=<?=$js?>"></script><?
+            ?><script type="text/javascript" src="<?=url::base();?>min/index.php?b=media/scripts&amp;f=<?=$js?>"></script><?
                      
         }
                                                                          
