@@ -2,7 +2,6 @@
 
 class Media {
 
-
     public static function render_scripts(Array $javascripts ){
     
         if (count($javascripts) ==0)
