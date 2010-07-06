@@ -2,56 +2,83 @@
 
 class Media {
 
-    public static function render_scripts(Array $javascripts ){
+    static protected $_scripts = array();
+    static protected $_styles = array();
+
+
+    public static function addToArray( Array & $array, $data){
+           
+           if (is_array($data))
+                $array = array_merge( $array, $data);
+           else
+                $array[] = $data;
+           
+    }
+
+    public static function addScript( $scripts){
     
-        if (count($javascripts) ==0)
-            return FALSE;
+         self::addToArray( self::$_scripts, $scripts);
+    
+    }
+
+    public static function addStyle( $styles){
+        
+         self::addToArray( self::$_styles, $styles);
+    }
+
+    public static function renderScripts(){
     
     
-        if (!IN_PRODUCTION){
+         if (count(self::$_scripts) == 0)
+            return FALSE; 
     
-            foreach ($javascripts as $js){
+
+           // kohana:: $environment
+         if (!IN_PRODUCTION){
+    
+            foreach (self::$_scripts as $js){
               
                 echo HTML::script("media/scripts/".$js);
               
             }
             
-        }else{
+         }else{
                                               
-            $js = implode(",",$javascripts);
+            $js = implode( ",", self::$_scripts);
            
             ?><script type="text/javascript" src="<?=url::base();?>min/index.php?b=media/scripts&amp;f=<?=$js?>"></script><?
                      
-        }
+         }
                                                                          
     
     }
 
-    public static function render_styles( Array $styles){
+    public static function renderStyles(){
                
-           if (count($styles)==0)
-               return FALSE;    
+         if (count(self::$_styles) == 0)
+               return FALSE;      
                
-           if (!IN_PRODUCTION){
-          
-               foreach ($styles as $style){
-    
-                   echo HTML::style("media/styles/".$style);
-    
-               }
-               	                                                                    
-          }else{
+         switch ( Kohana::$environment){
+           
+              case Kohana::DEVELOPMENT:
+              case Kohana::STAGING:
+              case kohana::TESTING:     
+              default:
+                                      
+                 foreach (self::$_styles as $style){
+                       echo HTML::style("media/styles/".$style);
+                 }
+                  
+                 break;
+                 
+             case Kohana::PRODUCTION:
                
-               $styles = implode(",",$styles);
-               ?><link rel='stylesheet' type='text/css' href='<?=url::base();?>min/index.php?b=media/styles&amp;f=<?=$styles?>'></script><?
-                       
+               ?><link rel='stylesheet' type='text/css' href='<?=url::base();?>min/index.php?b=media/styles&amp;f=<?=implode(",", self::$_styles);?>' /><?
+
+                 break;                        
           } 
           
     }
-
-
-
-
 
 
 }

@@ -2,9 +2,6 @@
 
   ?><title><?=$title;?></title><?
 
-
-  if (isset($styles) && is_array($styles)){
-        Media::render_styles($styles);
-  }
+  Media::renderStyles();
   
 ?><script>var base_url='<?=url::base();?>';</script>
