@@ -17,7 +17,7 @@ class Search {
           // agafem la meitat
           $pivot = floor( ($i+$j) /2);
   
-          $res = $comparador( $array[$pivot], $valor)
+          $res = $comparador( $array[$pivot], $valor);
   
           // trobem l'element
           if ($res == 0){
@@ -25,7 +25,7 @@ class Search {
               return true;        
           
           // es mes gran per tant esta en la meitat superior
-          }else($res > 0){ 
+          }else if($res > 0){ 
             
               $j = $pivot +1;          
               

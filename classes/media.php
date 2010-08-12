@@ -34,7 +34,7 @@ class Media {
     
 
            // kohana:: $environment
-         if (!IN_PRODUCTION){
+         if ( kohana::$environment == Kohana::DEVELOPMENT){
     
             foreach (self::$_scripts as $js){
               

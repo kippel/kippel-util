@@ -6,13 +6,36 @@ class Parser{
   public static function import2english($import){
         if ( !strstr($import,",") ) $import .= ",00";
         $import = str_replace('.','',$import);
-        
+
         return substr_replace($import,'.',strlen($import)-3,1);
   }
-                                            
+
+  public static function nif($nif){
+
+	$n = strlen($nif);
+
+        if ($n != 9){
+
+		if (is_numeric( substr($nif,0,1))){
+
+        		if ($n < 9){
+        			$nif = str_pad($nif,9,'0', STR_PAD_LEFT);
+			}
+		}else{
+        		// te una lletra al principi
+	                if ($n< 9){
+        	        	$nif = substr($nif,0,1).str_pad( substr($nif,1,strlen($nif)-1), 8,'0', STR_PAD_LEFT);
+			}
+		}
+        }
+
+	return (String)strtoupper(substr($nif,0,9));
+  }
+
+
 
   // es una clase estatica
-  private function __construct(){ }	
+  private function __construct(){ }
 
 	/**
 	 * Formats a phone number according to the specified format.
@@ -26,7 +49,7 @@ class Parser{
 		//els 900 i mobils format 3-2-2-2, la resta 2-3-2-2
 		if (substr($number,0,2)=='90' || substr($number,0,1)=='6' || substr($number,0,1)=='7')
 			$format = '3.2.2.2';
-		 
+
 		// Get rid of all non-digit characters in number string
 		$number_clean = preg_replace('/\D+/', '', (string) $number);
 
@@ -54,7 +77,13 @@ class Parser{
 		if ($data == "") return $data;
 		return substr($data,8,2) . "-" . substr($data,5,2) . "-" . substr($data,0,4);
 	}
-	
+
+	   //de dd/mm/aaaa a aaaammdd
+	public static function l_data($data){
+		if ($data == "") return $data;
+		return substr($data,6,4) . substr($data,3,2) .  substr($data,0,2);
+	}
+
 	public static function rh_data($data){ return substr($data,8,2) . "-" . substr($data,5,2) . "-" . substr($data,0,4) . " " . substr($data,11,5); }
 
 
