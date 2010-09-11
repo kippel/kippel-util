@@ -33,6 +33,8 @@ class Media {
             return FALSE; 
     
 
+         self::$_scripts = array_unique(self::$_scripts);
+
            // kohana:: $environment
          if ( kohana::$environment == Kohana::DEVELOPMENT){
     
@@ -57,6 +59,8 @@ class Media {
                
          if (count(self::$_styles) == 0)
                return FALSE;      
+               
+         self::$_styles = array_unique(self::$_styles);      
                
          switch ( Kohana::$environment){
            
