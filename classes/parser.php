@@ -10,6 +10,12 @@ class Parser{
         return substr_replace($import,'.',strlen($import)-3,1);
   }
 
+  public static function telefon($tel){
+       if ($tel == "") return $tel;
+        return str_replace('.','',$tel);
+  }
+
+
   public static function nif($nif){
 
 	$n = strlen($nif);
