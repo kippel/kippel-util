@@ -24,10 +24,15 @@ class Parser{
 
 		if (is_numeric( substr($nif,0,1))){
 
+			if ( ! is_numeric(substr($nif,1,1))){
+				$nif = substr($nif,1,strlen($nif));
+			}
+
         		if ($n < 9){
         			$nif = str_pad($nif,9,'0', STR_PAD_LEFT);
 			}
 		}else{
+		
         		// te una lletra al principi
 	                if ($n< 9){
         	        	$nif = substr($nif,0,1).str_pad( substr($nif,1,strlen($nif)-1), 8,'0', STR_PAD_LEFT);
