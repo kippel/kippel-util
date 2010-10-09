@@ -2,9 +2,15 @@
 
 class Parser{
 
+	
+
 
   public static function import2english($import){
-        if ( !strstr($import,",") ) $import .= ",00";
+        if ( ! strstr($import,",") ) {
+        
+        	$import .= ",00";
+	}
+	
         $import = str_replace('.','',$import);
 
         return substr_replace($import,'.',strlen($import)-3,1);
@@ -91,7 +97,9 @@ class Parser{
 
 	   //de dd/mm/aaaa a aaaammdd
 	public static function l_data($data){
+	
 		if ($data == "") return $data;
+		
 		return substr($data,6,4) . substr($data,3,2) .  substr($data,0,2);
 	}
 
