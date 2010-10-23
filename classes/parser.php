@@ -2,15 +2,15 @@
 
 class Parser{
 
-	
+
 
 
   public static function import2english($import){
         if ( ! strstr($import,",") ) {
-        
+
         	$import .= ",00";
 	}
-	
+
         $import = str_replace('.','',$import);
 
         return substr_replace($import,'.',strlen($import)-3,1);
@@ -38,10 +38,14 @@ class Parser{
         			$nif = str_pad($nif,9,'0', STR_PAD_LEFT);
 			}
 		}else{
-		
+
         		// te una lletra al principi
 	                if ($n< 9){
         	        	$nif = substr($nif,0,1).str_pad( substr($nif,1,strlen($nif)-1), 8,'0', STR_PAD_LEFT);
+
+			}else{
+
+				$nif = substr($nif,0,1).substr($nif,2,8);
 			}
 		}
         }
@@ -97,9 +101,9 @@ class Parser{
 
 	   //de dd/mm/aaaa a aaaammdd
 	public static function l_data($data){
-	
+
 		if ($data == "") return $data;
-		
+
 		return substr($data,6,4) . substr($data,3,2) .  substr($data,0,2);
 	}
 
