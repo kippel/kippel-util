@@ -98,7 +98,13 @@ class Parser{
 		if ($data == "") return $data;
 		return substr($data,8,2) . "-" . substr($data,5,2) . "-" . substr($data,0,4);
 	}
-
+	
+	public static function t_data($data){
+        	if ($data == "") return $data;
+                return date('d-m-Y',$data);
+	}
+                                            
+                                            
 	   //de dd/mm/aaaa a aaaammdd
 	public static function l_data($data){
 
